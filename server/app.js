@@ -10,12 +10,19 @@ import { notFound, errorHandler } from './middlewares/errorMiddleware.js'
 
 
 config()
-connectDB()
+// connectDB()
 
 const app = express()
 app.use(cookieParser())
 app.use(cors())
 app.use(express.json())
+
+
+console.log(process.env.DB_HOST)
+console.log(process.env.DB_USERNAME)
+// console.log(process.env.DB_PASSWORD);
+console.log(process.env.DB_PORT)
+console.log(process.env.DB_DATABASE_NAME)
 
 
 

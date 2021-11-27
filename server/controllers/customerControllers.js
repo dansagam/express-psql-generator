@@ -1,4 +1,5 @@
 import customerService from "../services/customerService.js";
+import pool from '../db/connectDB.js'
 
 export const getAllCustomerList = async (req, res, next) => {
    try {
@@ -17,11 +18,12 @@ export const getAllCustomerList = async (req, res, next) => {
             $options: 'i'
          }
       } : {}
-      const customers = await customerService.getAllCustomers({ ...keyword })
+      const customers = await customerService.getAllCustomers()
       if (customers) {
          res.status(201).json({
             success: true,
-            data: customers
+            count: customers.rowCount,
+            data: customers.rows
          })
       } else {
          res.status(404)
@@ -40,7 +42,7 @@ export const getCustomerByid = async (req, res, next) => {
       if (foundCustomer) {
          res.status(201).json({
             success: true,
-            data: foundCustomer
+            data: foundCustomer.rows
          })
       } else {
          res.status(404)
@@ -69,7 +71,7 @@ export const addCustomer = async (req, res, next) => {
       if (addedCustomer) {
          res.status(201).json({
             success: true,
-            data: addedCustomer
+            data: addedCustomer.rows
          })
       } else {
          res.status(501)

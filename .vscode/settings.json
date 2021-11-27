@@ -1,5 +1,18 @@
 {
    "prettier.tabWidth": 3,
    "jshint.enable": false,
-   "editor.formatOnSave": true
+   "editor.formatOnSave": true,
+   "sqltools.connections": [
+      {
+         "previewLimit": 50,
+         "server": "localhost",
+         "port": 5432,
+         "askForPassword": true,
+         "driver": "PostgreSQL",
+         "name": "customer List ",
+         "database": "customer_db",
+         "username": "postgres",
+         "group": "Servers"
+      }
+   ]
 }
