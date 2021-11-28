@@ -1,5 +1,5 @@
 {
-  "name": "node-full-stack-template",
+  "name": "express-psql-pg-generator",
   "version": "1.0.0",
   "description": "this is a full stack node template",
   "type": "module",
@@ -24,7 +24,6 @@
     "express": "^4.17.1",
     "fs": "^0.0.1-security",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.0.13",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
     "pg": "^8.7.1",
