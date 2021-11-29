@@ -155,6 +155,7 @@ export const customerSlice = createSlice({
          }
       },
       [updatedCustomerToServer.fulfilled]: (state, action) => {
+         console.log(action.payload)
          return {
             ...state,
             isLoading: false,

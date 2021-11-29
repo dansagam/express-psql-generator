@@ -40,9 +40,9 @@ const Row = (props) => {
                {customerRow.first_name + " " + customerRow.last_name}
             </TableCell>
             <TableCell component={'th'} scope='row'>
-               {customerRow.phone_number.mobile_phone_number}
+               {customerRow.mobile_number}
             </TableCell>
-            <TableCell component={'th'} scope='row'>{customerRow.createdAt}</TableCell>
+            <TableCell component={'th'} scope='row'>{transformDate(customerRow.created)}</TableCell>
             <TableCell>
                <IconButton
                   aria-label="expand row"
@@ -76,7 +76,7 @@ const Row = (props) => {
                               <TableCell>{customerRow.first_name}</TableCell>
                               <TableCell>{customerRow.last_name}</TableCell>
                               <TableCell>
-                                 {customerRow.phone_number.mobile_phone_number}
+                                 {customerRow.mobile_number}
                               </TableCell>
                               <TableCell align='right'>
                                  {`${currentAge(customerRow.dob)}`}
@@ -85,7 +85,7 @@ const Row = (props) => {
                                  {transformDate(customerRow.dob)}
                               </TableCell>
                               <TableCell align='right'>
-                                 {transformDate(customerRow.createdAt)}
+                                 {transformDate(customerRow.created)}
                               </TableCell>
                            </TableRow>
                         </TableBody>
@@ -102,7 +102,7 @@ const Row = (props) => {
 
 Row.propTypes = {
    customerRow: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
+      _id: PropTypes.number.isRequired,
       first_name: PropTypes.string.isRequired,
       last_name: PropTypes.string.isRequired,
       phone_number: {

@@ -70,14 +70,13 @@ export const deleteCustomerFromServer = createAsyncThunk('customer/deleteCustome
 export const updatedCustomerToServer = createAsyncThunk('customer/updateCustomer',
    async (receivedData, { rejectWithValue }) => {
       try {
-         const { _id, first_name, last_name, mobile_number, age, dob } = receivedData
+         const { _id, first_name, last_name, middle_name, mobile_number, age, dob } = receivedData
 
          const posted = {
             first_name: first_name,
+            middle_name: middle_name,
             last_name: last_name,
-            phone_number: {
-               mobile_phone_number: mobile_number
-            },
+            mobile_number: mobile_number,
             age: age,
             dob: dob
          }

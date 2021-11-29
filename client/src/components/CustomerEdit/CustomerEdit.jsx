@@ -4,13 +4,17 @@ import {
    TextField,
    Button,
    Paper,
+   Alert,
    // Stack
 } from '@mui/material'
 // import { DatePicker, LocalizationProvider } from '@mui/lab';
 // import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import { phoneTestFunc } from '../../Utils/dateFuncFormater';
+import { currentAge, phoneTestFunc } from '../../Utils/dateFuncFormater';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCustomerByIdFromServer } from '../../reducers/AsyncSlice/customerAsync';
+import {
+   getCustomerByIdFromServer,
+   updatedCustomerToServer
+} from '../../reducers/AsyncSlice/customerAsync';
 import { useParams } from 'react-router-dom';
 // import AdapterDateFns from '@mui/lab/AdapterDayjs';
 
@@ -18,7 +22,7 @@ import { useParams } from 'react-router-dom';
 const CustomerEdit = () => {
    const dispatch = useDispatch()
    const { customerId } = useParams()
-   const { customer } = useSelector(({ customer }) => customer)
+   const { customer, success } = useSelector(({ customer }) => customer)
    const [firstName, setFirstName] = useState('')
    const [lastName, setLastName] = useState('')
    const [middleName, setMiddleName] = useState('')
@@ -52,11 +56,22 @@ const CustomerEdit = () => {
          return setAge(e.target.value)
       } else return
    }, [])
+
+   let newData = {
+      _id: customer._id,
+      first_name: firstName,
+      middle_name: middleName,
+      last_name: lastName,
+      age: age,
+      mobile_number: phoneNumber,
+      dob: customer.dob
+   }
    const handleSubmit = (event) => {
       event.preventDefault();
-      if (!apMsg && !pMsg) {
+      if (apMsg && pMsg) {
          return
       }
+      dispatch(updatedCustomerToServer(newData))
    };
 
    useEffect(() => {
@@ -66,8 +81,9 @@ const CustomerEdit = () => {
          setFirstName(customer.first_name)
          setLastName(customer.last_name)
          setMiddleName(customer.middle_name)
-         setPhoneNumber(customer.phone_number.mobile_phone_number)
-         setAPhoneNumber(customer.phone_number.home_phone_number)
+         setPhoneNumber(customer.mobile_number)
+         setAge(currentAge(customer.dob))
+         setAPhoneNumber(customer.additional_phone_number)
       }
 
    }, [dispatch, customerId, customer])
@@ -77,6 +93,7 @@ const CustomerEdit = () => {
          minWidth: 400, margin: 'auto', mt: 4,
          maxWidth: 500, overflow: 'hidden', px: 3
       }}>
+         {success.updateSuccess && <Alert variant='success'>Customer Details updated</Alert>}
          <form onSubmit={handleSubmit}>
             <Grid container alignItems="center"
                justifyContent={'center'} spacing={2}

@@ -63,7 +63,7 @@ const updateCustomer = async (id, newData) => {
    } = newData
    const client = await pool.connect()
    const result = await client.query(
-      'UPDATE customer SET first_name = $1, middle_name = $2, last_name = $3, mobile_number = $4, additional_phone_number = $5, age = $6, dob = $7, updated = now() WHERE _id = $8',
+      'UPDATE customer SET first_name = $1, middle_name = $2, last_name = $3, mobile_number = $4, additional_phone_number = $5, age = $6, dob = $7, updated = now() WHERE _id = $8 RETURNING *',
       [
          first_name,
          middle_name,
@@ -76,6 +76,7 @@ const updateCustomer = async (id, newData) => {
       ]
    )
    if (result.rows) {
+      // console.log(result)
       return result
    } else {
       throw new Error('Customer detail could not be updated, please check yout data')

@@ -88,6 +88,7 @@ export const updateCustomer = async (req, res, next) => {
          middle_name, first_name, mobile_number, additional_phone_number
       } = req.body
       const foundCustomer = (await customerService.getCustomerById(req.params.id)).rows[0]
+      // console.log(foundCustomer)
       if (foundCustomer) {
          foundCustomer.first_name = first_name
          foundCustomer.last_name = last_name
@@ -97,6 +98,7 @@ export const updateCustomer = async (req, res, next) => {
          foundCustomer.mobile_number = mobile_number
          foundCustomer.additional_phone_number = additional_phone_number
          const updatedCustomer = await customerService.updateCustomer(foundCustomer._id, foundCustomer)
+         // console.log(updatedCustomer)
          if (updatedCustomer) {
             res.status(201).json({
                success: true,

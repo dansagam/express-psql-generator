@@ -10,9 +10,11 @@ export const currentAge = (dateString) => {
 }
 
 export const phoneTestFunc = (inputTxt) => {
-   let phoneMatch = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/
+   // let phoneMatch = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/
    // const phoneMatch = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
-   // const phoneMatch = /^\+?([0-9]{1,3}?)\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9{4}])$/
+   // const phoneMatch = /^\+?([0-9]?)\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+   // const phoneMatch = /^\+?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+   const phoneMatch = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
    if (inputTxt.match(phoneMatch)) {
       return true
    } else return false
