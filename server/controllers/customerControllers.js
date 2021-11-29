@@ -119,7 +119,7 @@ export const deleteCustomer = async (req, res, next) => {
          res.status(201).json({
             success: true,
             message: "customer Deleted",
-            data: data
+            data: deletedCustomer.rows[0]
          })
       } else {
          res.status(404)
