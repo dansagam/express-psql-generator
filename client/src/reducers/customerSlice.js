@@ -1,23 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addNewCustomerToServer, deleteCustomerFromServer, getCustomerByIdFromServer, getCustomersFromServer, updatedCustomerToServer } from "./AsyncSlice/customerAsync";
-
+export const DEFAULT_STATE = {
+   customers: [],
+   customer: { first_name: '' },
+   isLoading: false,
+   success: {
+      getSuccess: false,
+      getAllSuccess: false,
+      addSuccess: false,
+      updateSuccess: false
+   },
+   customerError: {
+      msg: '',
+      status: null
+   }
+}
 export const customerSlice = createSlice({
    name: 'customer',
-   initialState: {
-      customers: [],
-      customer: { first_name: '' },
-      isLoading: false,
-      success: {
-         getSuccess: false,
-         getAllSuccess: false,
-         addSuccess: false,
-         updateSuccess: false
-      },
-      customerError: {
-         msg: '',
-         status: null
-      }
-   },
+   initialState: DEFAULT_STATE,
    reducers: {
       clearError: (state, action) => {
          return {
@@ -50,13 +50,17 @@ export const customerSlice = createSlice({
          }
       },
       [getCustomersFromServer.fulfilled]: (state, action) => {
-         return {
-            ...state,
-            isLoading: false,
-            customers: action.payload,
-            success: {
-               getAllSuccess: true
+         if (action.payload != null && typeof action.payload !== 'undefined') {
+            return {
+               ...state,
+               isLoading: false,
+               customers: action.payload,
+               success: {
+                  getAllSuccess: true
+               }
             }
+         } else {
+            return state
          }
       },
       [getCustomersFromServer.rejected]: (state, action) => {
@@ -76,13 +80,17 @@ export const customerSlice = createSlice({
          }
       },
       [getCustomerByIdFromServer.fulfilled]: (state, action) => {
-         return {
-            ...state,
-            isLoading: false,
-            customer: action.payload,
-            success: {
-               getAllSuccess: true
+         if (action.payload != null && typeof action.payload !== 'undefined') {
+            return {
+               ...state,
+               isLoading: false,
+               customer: action.payload,
+               success: {
+                  getAllSuccess: true
+               }
             }
+         } else {
+            return state
          }
       },
       [getCustomerByIdFromServer.rejected]: (state, action) => {
@@ -102,13 +110,17 @@ export const customerSlice = createSlice({
          }
       },
       [addNewCustomerToServer.fulfilled]: (state, action) => {
-         return {
-            ...state,
-            isLoading: false,
-            customers: [action.payload, ...state.customers],
-            success: {
-               addSuccess: true,
+         if (action.payload != null && typeof action.payload !== 'undefined') {
+            return {
+               ...state,
+               isLoading: false,
+               customers: [action.payload, ...state.customers],
+               success: {
+                  addSuccess: true,
+               }
             }
+         } else {
+            return state
          }
 
       },
@@ -129,13 +141,17 @@ export const customerSlice = createSlice({
          }
       },
       [deleteCustomerFromServer.fulfilled]: (state, action) => {
-         return {
-            ...state,
-            customers: state.customers.filter(customer => customer._id !== action.payload),
-            isLoading: false,
-            success: {
-               deleteSuccess: false
+         if (action.payload != null && typeof action.payload !== 'undefined') {
+            return {
+               ...state,
+               customers: state.customers.filter(customer => customer._id !== action.payload),
+               isLoading: false,
+               success: {
+                  deleteSuccess: false
+               }
             }
+         } else {
+            return state
          }
       },
       [deleteCustomerFromServer.rejected]: (state, action) => {
@@ -156,13 +172,17 @@ export const customerSlice = createSlice({
       },
       [updatedCustomerToServer.fulfilled]: (state, action) => {
          console.log(action.payload)
-         return {
-            ...state,
-            isLoading: false,
-            customer: action.payload,
-            success: {
-               updateSuccess: true
-            },
+         if (action.payload != null && typeof action.payload !== 'undefined') {
+            return {
+               ...state,
+               isLoading: false,
+               customer: action.payload,
+               success: {
+                  updateSuccess: true
+               }
+            }
+         } else {
+            return state
          }
 
       },

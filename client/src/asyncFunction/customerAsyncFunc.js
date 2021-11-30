@@ -22,8 +22,13 @@ export const getCustomerByIdFunc = async (id) => {
    }
 }
 export const addCustomerFunc = async (newData, config) => {
-   const response = await axios.post(`/api/v2/customers`, newData, config)
-   return response
+   if (process.env.REACT_APP_MOCK_DATA) {
+      console.log('add the new data to the mockdata store')
+      return [...customerLists, newData]
+   } else {
+      const response = await axios.post(`/api/v2/customers`, newData, config)
+      return response
+   }
 }
 
 export const updateCustomerFunc = async (id, newData, config) => {
