@@ -49,4 +49,39 @@ describe('customer reducer test', () => {
          expect(reducer(initialState, {})).toEqual(DEFAULT_STATE)
       })
    })
+   describe('get customer detail fulfilled action test', () => {
+      describe('when a new item as payload', () => {
+         beforeEach(() => {
+            actualState = reducer(initialState, {
+               type: 'customer/getCustomerByIdFromServer/fulfilled',
+               payload: { id: 'kayode' }
+            })
+         })
+         it('should return the passed data', () => {
+            expect(actualState.customer).toEqual({ id: 'kayode' })
+         })
+      })
+      describe('when null is passed as a payload', () => {
+         beforeEach(() => {
+            actualState = reducer(initialState, {
+               type: 'customer/getCustomerByIdFromServer/fulfilled',
+               payload: null
+            })
+         })
+         it('should return state', () => {
+            expect(actualState.customer).toEqual({ first_name: '' })
+         })
+      })
+      describe('when undefined is pass as payload', () => {
+         beforeEach(() => {
+            actualState = reducer(initialState, {
+               type: 'customer/getCustomerByIdFromServer/fulfilled',
+               payload: undefined
+            })
+         })
+         it('should return state and not change the customer', () => {
+            expect(actualState.customer).toEqual({ first_name: '' })
+         })
+      })
+   })
 })

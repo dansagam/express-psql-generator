@@ -61,4 +61,16 @@ const customerList = [
    },
 ]
 
+export const newData = {
+   "_id": 6,
+   "first_name": "kayode",
+   "middle_name": null,
+   "last_name": "Ogunnowo",
+   "mobile_number": "808-384-0470",
+   "additional_phone_number": null,
+   "age": 67,
+   "dob": "1994-03-11T23:00:00.000Z",
+   "created": "2021-11-27T20:40:23.982Z",
+   "updated": "2021-11-27T20:40:23.982Z"
+}
 export default customerList
