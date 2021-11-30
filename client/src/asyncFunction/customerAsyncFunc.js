@@ -1,12 +1,25 @@
 import axios from 'axios'
+import customerLists from '../mockdata/CUSTOMER_LIST_MOCK_DATA'
 
 export const getCustomersFunc = async (keyword) => {
-   const response = await axios.get(`/api/v2/customers?keyword=${keyword}`)
-   return response
+   if (process.env.REACT_APP_MOCK_DATA) {
+      console.log('using the MOCK data from mockdata customer store')
+      return [...customerLists]
+   } else {
+      const response = await axios.get(`/api/v2/customers?keyword=${keyword}`)
+      return response
+
+   }
 }
 export const getCustomerByIdFunc = async (id) => {
-   const response = await axios.get(`/api/v2/customers/${id}`)
-   return response
+   if (process.env.REACT_APP_MOCK_DATA) {
+      console.log('using the MOCK data from mockdata customer store')
+      // return [...customerLists, id]
+   } else {
+      const response = await axios.get(`/api/v2/customers/${id}`)
+      return response
+
+   }
 }
 export const addCustomerFunc = async (newData, config) => {
    const response = await axios.post(`/api/v2/customers`, newData, config)

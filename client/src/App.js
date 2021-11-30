@@ -11,6 +11,7 @@ import { Container } from '@mui/material';
 
 
 function App() {
+   console.log(process.env.REACT_APP_MOCK_DATA, process.env.REACT_APP_SERVER_URL)
    const dispatch = useDispatch()
    const { keyword } = useParams()
    useEffect(() => {
