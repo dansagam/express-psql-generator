@@ -17,7 +17,7 @@ function App() {
       dispatch(getCustomersFromServer({ keyword }))
    })
    return (
-      <div className="App" data-testId={'mainContent'}>
+      <div className="App" data-testid={'mainContent'}>
          <AppHeader />
          <Container>
             <Routes>
