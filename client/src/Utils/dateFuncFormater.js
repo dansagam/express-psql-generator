@@ -13,6 +13,26 @@ export const currentAgeDatePicker = (dataString) => {
    return Math.round(diffDate / 31557600000)
 }
 
+export const phoneNumberFormat = (phoneNumber) => {
+   //normalised the phone number format
+   if (!phoneNumber) {
+      return phoneNumber
+   } else {
+      phoneNumber = phoneNumber.replace(/[^\d]/g, '')
+      // if(phoneNumber.length ===3){
+      //    return phoneNumber.replace(/(\d{3})/, '$1-')
+      // }
+      if (phoneNumber.length === 6) {
+         return phoneNumber.replace(/(\d{3})(\d{3})/, '$1-$2')
+
+      } else if (phoneNumber.length === 10 || phoneNumber.length > 6) {
+         return phoneNumber.replace(/(\d{3})(\d{3})(\d{4})/, "$1-$2-$3")
+      }
+      return phoneNumber
+
+   }
+}
+
 export const phoneTestFunc = (inputTxt) => {
    // let phoneMatch = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/
    // const phoneMatch = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/

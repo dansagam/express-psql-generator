@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import AppForm from '../../modules/AppForm/AppForm'
 import { addNewCustomerToServer } from '../../reducers/AsyncSlice/customerAsync'
-import { currentAgeDatePicker, phoneTestFunc } from '../../Utils/dateFuncFormater'
+import { currentAgeDatePicker, phoneNumberFormat, phoneTestFunc } from '../../Utils/dateFuncFormater'
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateAdapter from '@mui/lab/AdapterDateFns'
 import DatePicker from '@mui/lab/DatePicker';
@@ -39,23 +39,31 @@ const CustomerNew = () => {
       } else if (e.target.name === 'middle_name') {
          return setMiddleName(e.target.value)
       } else if (e.target.name === 'mobile_number') {
-         if (phoneTestFunc(e.target.value)) {
-            setPMsg(false)
+         if (e.target.value.length > 12) {
+            return setPhoneNumber(phoneNumber)
          } else {
-            setPMsg(true)
+            if (phoneTestFunc(e.target.value)) {
+               setPMsg(false)
+            } else {
+               setPMsg(true)
+            }
+            return setPhoneNumber(phoneNumberFormat(e.target.value))
          }
-         return setPhoneNumber(e.target.value)
       } else if (e.target.name === 'additional_phone_number') {
-         if (phoneTestFunc(e.target.value)) {
-            setAPMsg(false)
+         if (e.target.value.length > 12) {
+            return setAPhoneNumber(aphoneNumber)
          } else {
-            setAPMsg(true)
+            if (phoneTestFunc(e.target.value)) {
+               setAPMsg(false)
+            } else {
+               setAPMsg(true)
+            }
+            return setAPhoneNumber(phoneNumberFormat(e.target.value))
          }
-         return setAPhoneNumber(e.target.value)
       } else if (e.target.name === 'age') {
          return setAge(e.target.value)
       } else return
-   }, [])
+   }, [aphoneNumber, phoneNumber])
    const newData = {
       first_name: firstName,
       middle_name: middleName,
