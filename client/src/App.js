@@ -21,7 +21,7 @@ function App() {
    return (
       <div className="App" data-testid={'mainContent'}>
          <AppHeader />
-         <Container>
+         <Container maxWidth="md">
             <Routes>
                <Route
                   name='home-route'

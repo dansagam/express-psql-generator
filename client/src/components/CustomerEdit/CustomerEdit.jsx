@@ -198,8 +198,8 @@ const CustomerEdit = () => {
                </Grid>
                <Grid item>
                   <Button variant="contained" color="primary" type="submit">
-                     <Link to={'/customernew'} >
-                        new Customer
+                     <Link to={'/customernew'} style={{ textDecoration: "none", color: "inherit" }} >
+                        Add new Customer
                      </Link>
                   </Button>
                </Grid>
