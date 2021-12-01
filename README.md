@@ -1,6 +1,30 @@
-# Getting Started with Create React App
+# Getting started with the Customer List App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+to get started, you have to clone the repo
+
+## clone the repo
+
+1. clone the repo $ gh repo clone [Clone the App](https://github.com/dansagam/express-mongo-generator.git)
+
+### Install the dependencies and create the Environment variable
+
+cd into the directory and install the dependencies. By using the npm install on both the server and the client.
+
+create the env files by copying all in the env.example files
+
+### POSTGRESQL
+
+if you have postgressql installed on the machine, you can simply run the npm run server to check the port your app is listening to.
+
+### sample data and starting the app
+
+stop the server with the CTRL+C, run the to destroy already inserted data and thereafter, use the file in script directory
+
+To start the run npm run dev to run both the react client server and the node server.
+npm run dev
+
+to run the test, run npm run test on the client page
 
 ## Available Scripts
 
