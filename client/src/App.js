@@ -8,6 +8,7 @@ import HomeRoutes from './components/HomeRoutes/HomeRoutes';
 import CustomerRoutes from './components/CustomerRoutes/CustomerRoutes';
 import CustomerEdit from './components/CustomerEdit/CustomerEdit';
 import { Container } from '@mui/material';
+import CustomerNew from './components/CustomerNew/CustomerNew';
 
 
 function App() {
@@ -31,6 +32,11 @@ function App() {
                   name='home-route'
                   exact path={'search/:keyword'}
                   element={<CustomerRoutes />}
+               />
+               <Route
+                  name='new-customer-route'
+                  path={'customernew'}
+                  element={<CustomerNew />}
                />
                <Route
                   name='customerlist-route'

@@ -56,15 +56,23 @@ export const getCustomerByid = async (req, res, next) => {
 
 export const addCustomer = async (req, res, next) => {
    try {
-      const { age, dob, last_name, middle_name, first_name, mobile_number } = req.body
+      const {
+         age,
+         dob,
+         last_name,
+         middle_name,
+         first_name,
+         mobile_number,
+         additional_phone_number
+      } = req.body
       const newData = {
          first_name: first_name,
          middle_name: middle_name || null,
          last_name: last_name,
          age: age,
-         dob: new Date(dob),
+         dob: dob,
          mobile_number: mobile_number,
-         additional_phone_number: additional_phone_number || null
+         additional_phone_number: additional_phone_number || ''
       }
       const addedCustomer = await customerService.addCustomer(newData)
       if (addedCustomer) {

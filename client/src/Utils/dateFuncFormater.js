@@ -8,6 +8,10 @@ export const currentAge = (dateString) => {
    let diffDate = (Date.now() - myDate.getTime())
    return Math.round(diffDate / 31557600000)
 }
+export const currentAgeDatePicker = (dataString) => {
+   let diffDate = (Date.now() - dataString.getTime())
+   return Math.round(diffDate / 31557600000)
+}
 
 export const phoneTestFunc = (inputTxt) => {
    // let phoneMatch = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/

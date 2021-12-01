@@ -30,14 +30,14 @@ export const getCustomerByIdFromServer = createAsyncThunk('customer/getCustomerB
 export const addNewCustomerToServer = createAsyncThunk('customer/addNewCustomerToServer',
    async (newData, { rejectWithValue }) => {
       try {
-         const { first_name, last_name, mobile_number, age, dob } = newData
+         const { first_name, last_name, middle_name, mobile_number, additional_phone_number, age, dob } = newData
 
          const posted = {
             first_name: first_name,
+            middle_name: middle_name,
             last_name: last_name,
-            phone_number: {
-               mobile_phone_number: mobile_number
-            },
+            mobile_number: mobile_number,
+            additional_phone_number: additional_phone_number,
             age: age,
             dob: dob
          }

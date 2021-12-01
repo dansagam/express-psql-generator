@@ -3,6 +3,7 @@ import { Outlet, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getCustomersFromServer } from '../../reducers/AsyncSlice/customerAsync'
 import CustomerTable from '../CustomerTable/CustomerTable'
+import { clearError } from '../../reducers/customerSlice'
 
 const CustomerRoutes = () => {
    const history = useNavigate()
@@ -10,7 +11,10 @@ const CustomerRoutes = () => {
    const { keyword } = useParams()
    useEffect(() => {
       dispatch(getCustomersFromServer({ keyword }))
-   })
+      return () => {
+         dispatch(clearError())
+      }
+   }, [dispatch, keyword])
    return (
       <div>
          <CustomerTable history={history} />

@@ -8,7 +8,8 @@ export const DEFAULT_STATE = {
       getSuccess: false,
       getAllSuccess: false,
       addSuccess: false,
-      updateSuccess: false
+      updateSuccess: false,
+      deleteSuccess: false
    },
    customerError: {
       msg: '',
@@ -56,6 +57,10 @@ export const customerSlice = createSlice({
                isLoading: false,
                customers: action.payload,
                success: {
+                  getSuccess: false,
+                  addSuccess: false,
+                  updateSuccess: false,
+                  deleteSuccess: false,
                   getAllSuccess: true
                }
             }
@@ -86,6 +91,10 @@ export const customerSlice = createSlice({
                isLoading: false,
                customer: action.payload,
                success: {
+                  getSuccess: true,
+                  addSuccess: false,
+                  updateSuccess: false,
+                  deleteSuccess: false,
                   getAllSuccess: true
                }
             }
@@ -115,7 +124,12 @@ export const customerSlice = createSlice({
                ...state,
                isLoading: false,
                customers: [action.payload, ...state.customers],
+               customer: action.payload,
                success: {
+                  getSuccess: false,
+                  getAllSuccess: false,
+                  updateSuccess: false,
+                  deleteSuccess: false,
                   addSuccess: true,
                }
             }
@@ -147,7 +161,11 @@ export const customerSlice = createSlice({
                customers: state.customers.filter(customer => customer._id !== action.payload),
                isLoading: false,
                success: {
-                  deleteSuccess: false
+                  getSuccess: false,
+                  getAllSuccess: false,
+                  addSuccess: false,
+                  updateSuccess: false,
+                  deleteSuccess: true
                }
             }
          } else {
@@ -178,6 +196,10 @@ export const customerSlice = createSlice({
                isLoading: false,
                customer: action.payload,
                success: {
+                  getSuccess: false,
+                  getAllSuccess: false,
+                  addSuccess: false,
+                  deleteSuccess: false,
                   updateSuccess: true
                }
             }

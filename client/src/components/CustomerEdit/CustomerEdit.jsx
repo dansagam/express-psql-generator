@@ -15,7 +15,8 @@ import {
    getCustomerByIdFromServer,
    updatedCustomerToServer
 } from '../../reducers/AsyncSlice/customerAsync';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { clearError, clearSuccess } from '../../reducers/customerSlice';
 // import AdapterDateFns from '@mui/lab/AdapterDayjs';
 
 
@@ -84,6 +85,10 @@ const CustomerEdit = () => {
          setPhoneNumber(customer.mobile_number)
          setAge(currentAge(customer.dob))
          setAPhoneNumber(customer.additional_phone_number)
+      }
+      return () => {
+         dispatch(clearError())
+         dispatch(clearSuccess())
       }
 
    }, [dispatch, customerId, customer])
@@ -190,7 +195,13 @@ const CustomerEdit = () => {
                   <Button variant="contained" color="primary" type="submit">
                      Submit
                   </Button>
-
+               </Grid>
+               <Grid item>
+                  <Button variant="contained" color="primary" type="submit">
+                     <Link to={'customernew'} >
+                        new Customer
+                     </Link>
+                  </Button>
                </Grid>
             </Grid>
          </form>
