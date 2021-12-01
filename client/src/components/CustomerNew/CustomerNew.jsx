@@ -16,7 +16,7 @@ import { currentAgeDatePicker, phoneTestFunc } from '../../Utils/dateFuncFormate
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DateAdapter from '@mui/lab/AdapterDateFns'
 import DatePicker from '@mui/lab/DatePicker';
-import { clearError, clearSuccess } from '../../reducers/customerSlice'
+// import { clearError, clearSuccess } from '../../reducers/customerSlice'
 // import AdapterDateFns from '@mui/lab/AdapterDayjs';
 const CustomerNew = () => {
    const dispatch = useDispatch()
@@ -71,7 +71,6 @@ const CustomerNew = () => {
       if (apMsg && pMsg) {
          return
       }
-      console.log(newData)
       dispatch(addNewCustomerToServer(newData))
       navigate('/customers')
    };
@@ -80,13 +79,8 @@ const CustomerNew = () => {
    useEffect(() => {
       if (success.addSuccess) {
          navigate('/customers')
-         console.log('djdjskdj')
       }
-      return () => {
-         dispatch(clearError())
-         dispatch(clearSuccess())
-      }
-   }, [success, navigate, dispatch])
+   }, [success, navigate])
    return (
       <LocalizationProvider dateAdapter={DateAdapter}>
          <AppForm>
